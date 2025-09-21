@@ -1,0 +1,142 @@
+<!--202136049 최준혁-->
+<div class="container">	
+
+	<script>
+        function displayFileName(){
+            var fileName = $("#file").val();
+            $(".upload-name").val(fileName);
+        }
+    </script>
+    <% if (url == "create") { %>
+    <h2>상품 입력</h2>
+    <form action="/product/create_process" method="post" enctype="multipart/form-data">
+        <div class="mb-3">
+            <label class="form-label" for="id_main">카테고리 </label> 
+                <select name="category" id="id_main">
+                    <% for (var i = 0; i < code.length; i++) { %>
+                    <option value="<%= code[i].main_id %>:<%= code[i].sub_id %>">
+                        <%= code[i].main_name %>:<%= code[i].sub_name %>
+                    </option>
+                    <% } %>
+                </select>
+        </div>
+        <table>
+            <tr>
+                <td>
+                    <div class="mb-3">
+                        <label label class="form-label" for="id">제품명</label> 
+                        <input class="form-control" type="text" name="name"  style = "width:300px;" />
+                    </div>
+                </td>
+                <td width = "30px"></td>
+                <td>
+                    <div class="mb-3">
+                        <label class="form-label" for="id">가격</label> 
+                        <input class="form-control" type="text" name="price" style = "width:300px;" />
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="mb-3">
+                        <label class="form-label" for="id">재고</label> 
+                        <input class="form-control" type="text" name="stock" style="width:300px;" />
+                    </div>
+                </td>
+                <td width = "30px"></td>
+                <td>
+                    <div class="mb-3">
+                        <label class="form-label" for="id">브랜드</label> 
+                        <input class="form-control" type="text" name="brand" style="width:300px;" />
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="mb-3">
+                        <label class="form-label" for="id">공급자</label> 
+                        <input class="form-control" type="text" name="supplier" id="start" style="width:300px;" />
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <div class="filebox">
+            <input class="upload-name" value="" placeholder="이미지파일">
+            <input type="file" id="file" name="uploadFile" onchange="displayFileName()">
+            <p><input type="submit" value=""></p>
+        </div>
+        
+        <button class="btn btn-outline-primary btn-sm" type="submit">입력</button>
+        <a href="/product/view"><button class="btn btn-outline-primary btn-sm" type="button">상품 목록 돌아가기</button></a>
+    </form>
+    <% } else if (url == "update") { %>
+    <h2>상품 수정</h2>
+    <form action="/product/update_process" method="post" enctype="multipart/form-data">
+        <div class="mb-3">
+            <label class="form-label" for="id_main">카테고리 </label> 
+                <select name="category" id="id_main">
+                    <% for (var i = 0; i < code.length; i++) { %>
+                        <% if (product.main_id == code[i].main_id && product.sub_id == code[i].sub_id) { %>
+                            <option value="<%= code[i].main_id %>:<%= code[i].sub_id %>" selected>
+                                <%= code[i].main_name %>:<%= code[i].sub_name %>
+                            </option>
+                            <% continue; %>
+                        <% } %>
+                        <option value="<%= code[i].main_id %>:<%= code[i].sub_id %>">
+                            <%= code[i].main_name %>:<%= code[i].sub_name %>
+                        </option>
+                    <% } %>
+                </select>
+        </div>
+        <table>
+            <tr>
+                <td>
+                    <div class="mb-3">
+                        <label label class="form-label" for="id">제품명</label> 
+                        <input class="form-control" type="text" name="name"  style = "width:300px;" value ="<%= product.name %>" />
+                    </div>
+                </td>
+                <td width = "30px"></td>
+                <td>
+                    <div class="mb-3">
+                        <label class="form-label" for="id">가격</label> 
+                        <input class="form-control" type="text" name="price" style = "width:300px;" value ="<%= product.price %>" />
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="mb-3">
+                        <label class="form-label" for="id">재고</label> 
+                        <input class="form-control" type="text" name="stock" style="width:300px;" value ="<%= product.stock %>" />
+                    </div>
+                </td>
+                <td width = "30px"></td>
+                <td>
+                    <div class="mb-3">
+                        <label class="form-label" for="id">브랜드</label> 
+                        <input class="form-control" type="text" name="brand" style="width:300px;" value ="<%= product.brand %>" />
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="mb-3">
+                        <label class="form-label" for="id">공급자</label> 
+                        <input class="form-control" type="text" name="supplier" id="start" style="width:300px;" value ="<%= product.supplier %>" />
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <div class="filebox">
+            <input class="upload-name" name = "notUpdatedImage" value="<%= product.image %>">
+            <input type="file" id="file" name="uploadFile" onchange="displayFileName()">
+            <p><input type="submit" value=""></p>
+        </div>
+        <input type="hidden" name="prod_id" value="<%= product.prod_id %>">
+        
+        <button class="btn btn-outline-primary btn-sm" type="submit">수정</button>
+        <a href="/product/view"><button class="btn btn-outline-primary btn-sm" type="button">상품 목록 돌아가기</button></a>
+    </form>
+    <% } %>
+</div>

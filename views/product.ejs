@@ -1,0 +1,27 @@
+<!--202136049 최준혁-->
+<table class="table table-bordered border-primary table-hover" style="text-align: center;">
+    <thead class="table-primary "><th>상품</th><th>상품명</th><th>가격</th><th>브랜드</th>
+        <% if (cls == 'MNG') { %> 
+            <th colspan="2">메뉴</th>
+        <% } %>
+    </thead> 
+    <% for (var i = 0; i < product.length; i++) { %>
+    <tr>
+        <td><a href="/detail/<%- product[i].prod_id %>"><img src="<%- product[i].image %>" style="width:100px;height:100px; "></a></td>
+        <td><%- product[i].name %></td>
+        <td><%- product[i].price %></td>
+        <td><%- product[i].brand %></td>
+        <% if (cls == 'MNG') { %>
+            <td><a href="/product/update/<%- product[i].prod_id %>" style="text-decoration: none;">수정</a></td>
+            <td><a href="/product/delete/<%- product[i].prod_id %>" style="text-decoration: none;" onclick="if(confirm('정말로 삭제하시겠습니까?')==false) return false">삭제</a></td>
+        <% } %>
+        </tr>
+    <% } %>
+</table>
+<% if (product.length == 0) { %>
+    <p>등록된 상품이 없으니 상품 추가 버튼으로 코드를 추가해 주십시오. </p>
+<% } %>
+
+<% if (cls == 'MNG') { %>
+    <a href="/product/create"><button class="btn btn-outline-secondary btn-sm" type="submit">상품 추가</button></a>
+<% } %>

@@ -1,0 +1,26 @@
+<table class="table table-bordered border-primary table-hover" style="text-align: center;">
+    <thead class="table-primary ">
+        <% for (var i = 0; i < columns.length; i++) { %>
+            <th><%- columns[i].COLUMN_COMMENT %></th>
+        <% } %>
+        <th colspan="3">메뉴</th>
+    </thead> 
+    <% for (var j = 0; j < tableData.length; j++) { %>
+    <tr>
+        <% for (var k = 0; k < columns.length; k++) { 
+            var columnName = columns[k].COLUMN_NAME;
+            %>
+            <td><%- tableData[j][columnName] %></td>
+        <% } %>
+        <td><a href="#">생성</a></td>
+        <td><a href="#">수정</a></td>
+        <td><a href="#" onclick="if(confirm('정말로 삭제하시겠습니까?')==false) return false">삭제</a></td>
+    </tr>
+    <% } %>
+        
+</table>
+
+<% if (tableData.length == 0) { %>
+    <p>테이블에 값이 존재하지 않습니다.</p>
+<% } %>
+

@@ -1,0 +1,15 @@
+<table class="table table-bordered border-primary table-hover" style="text-align: center;">
+    <thead class="table-primary "><th>테이블명</th><th>테이블 설명</th></thead>
+    <% for (var i = 0; i < tables.length; i++) { %>
+    <tr>
+        <td><a href="/table/view/<%= tables[i].TABLE_NAME %>"><%- tables[i].TABLE_NAME %></a></td>
+        <td><%- tables[i].TABLE_COMMENT %></td>
+    </tr>
+    <% } %>
+        
+</table>
+
+<% if (tables.length == 0) { %>
+    <p>테이블이 없습니다.</p>
+<% } %>
+

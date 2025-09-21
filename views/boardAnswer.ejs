@@ -1,0 +1,38 @@
+<div class="container">
+	<form action="/board/answer_process" method="post" >
+        <input type = "hidden" name="type_id" value = "<%= board[0].type_id %>">
+        <input type = "hidden" name="loginid" value = "<%= loginid %>">
+        <input type = "hidden" name="password" value = "<%= board[0].password %>">
+        <input type = "hidden" name="pNum" value = "<%- pNum %>">
+        <input type = "hidden" name="p_id" value = "<%= board[0].board_id %>">
+        <input type = "hidden" name="board_id" value = "<%= board[0].board_id %>">
+
+		<div class="mb-3">
+			<label class="form-label" for="id">제목</label> 
+			<input class="form-control" type="text" name="title" value = "<%- board[0].title %>" style = "width:300px;" disabled/>
+            <input type="hidden" name="title" value="[답변] : <%- board[0].title %>">
+		</div>
+        <div class="mb-3">
+			<label class="form-label" for="id">작성자</label> 
+			<input class="form-control" type="text" name="" value = "<%- boardperson[0].name %> " style = "width:300px;" disabled/>
+		</div>
+        <div class="mb-3">
+            <label class="form-label" for="id">작성일</label>
+            <input class="form-control" type="text" name="date" value="<%- board[0].date %>" style = "width:300px;" disabled/>
+            <input type="hidden" name="date" value="<%- board[0].date %>">
+        </div>
+        <div class="mb-3">
+			<label class="form-label" for="id">내용</label> 
+			<textarea class="form-control" name="content" style = "width:800px;height: 100px;" disabled><%- board[0].content %></textarea>
+		</div>
+        <div class="mb-3">
+            <label class="form-label" for="id">답변</label>
+            <textarea class="form-control" name="content" style = "width:800px;height: 100px;" ></textarea>
+        </div>
+    
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <a href="/board/answer_process"> <button type="submit" class="btn btn-info me-md-2">작성</button> </a>
+            <a href="/board/view/<%= board[0].type_id %>/<%- pNum %>"> <button type="button" class="btn btn-info me-md-2">목록</button> </a>
+        </div>    
+    </form>
+</div>

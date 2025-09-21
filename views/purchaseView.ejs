@@ -1,0 +1,26 @@
+<table class="table table-bordered border-primary table-hover" style="text-align: center;">
+    <thead class="table-primary "><th>고객id</th><th>고객명</th><th>상품id</th><th>상품명</th><th>구매일</th><th>가격</th><th>구매량</th><th>총가격</th><th>지불여부</th><th>취소여부</th><th>환불여부</th><th colspan="2">메뉴</th></thead> 
+    <% for (var i = 0; i < purchases.length; i++) { %>
+    <tr>
+        <td><%= purchases[i].loginid %></td>
+        <td><%= purchases[i].person_name %></td>
+        <td><%= purchases[i].prod_id %></td>
+        <td><%= purchases[i].product_name %></td>
+        <td><%= purchases[i].purchase_date %></td>
+        <td><%= purchases[i].price %></td>
+        <td><%= purchases[i].qty %></td>
+        <td><%= purchases[i].total %></td> 
+        <td><%= purchases[i].payYN %></td>
+        <td><%= purchases[i].cancel %></td>
+        <td><%= purchases[i].refund %></td>
+        <td><a href="/purchaseupdate/<%= purchases[i].purchase_id %>">수정</a></td>
+        <td><a href="/purchasedelete/<%= purchases[i].purchase_id %>" onclick="if(confirm('정말로 삭제하시겠습니까?')==false) return false">삭제</a></td>
+    </tr>
+    <% } %>
+        
+</table>
+
+<% if (purchases.length == 0) { %>
+    <p>고객이 구매한 상품이 없습니다.</p>
+<% } %>
+

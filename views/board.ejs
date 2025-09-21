@@ -1,0 +1,38 @@
+<h1></h1>
+<table class="table table-bordered border-primary">
+<tr><td>작성자</td><td>제목</td><td>날짜</td></tr>
+    <% for (var i = 0; i < board.length; i++) { %>
+        <tr>
+            <td><%- board[i].name %></td>
+            <td><a href="/board/detail/<%= board[i].board_id %>/<%= pNum %>/<%= boardtype[0].re_YN %>"><%- board[i].title %></a></td>
+            <td><%- board[i].date %></td>
+        </tr>
+    <% } %>
+</table>  
+<% if ((cls === 'CST' || cls === 'MNG') && board.length === 0) { %>
+    <p>글쓰기 버튼으로 글을 작성하세요.</p>
+<% } else if (cls !== 'CST' && cls !== 'MNG' && board.length === 0) { %>    
+    <p>게시글이 존재하지 않습니다.</p>
+<% } %>
+
+
+<% if (cls == 'CST' && boardtype[0].write_YN == 'Y') { %>
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <a href="/board/create/<%= boardtype[0].type_id %>"> <button type="button" class="btn btn-info me-md-2">글쓰기</button> </a>
+    </div>
+<% } else if (cls == 'MNG') { %>
+    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        <a href="/board/create/<%= boardtype[0].type_id %>"> <button type="button" class="btn btn-info me-md-2">글쓰기</button> </a>
+    </div>
+<% } %>
+<% var j = 1;
+    while (j <= totalPages) {
+        if(j == pNum){ %>
+            <span style="font-weight : bold;"><%=j%></span> &nbsp;&nbsp;
+        <% } else { %>
+            <span><a href="/board/view/<%=boardtype[0].type_id%>/<%=j%>"><%=j%></a></span> &nbsp;&nbsp;
+        <% }
+        j++
+    } %>
+
+

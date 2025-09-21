@@ -1,0 +1,124 @@
+<!-- 202136049 최준혁-->
+<div class="container">	
+	<% if (cls === 'NON' && url === 'create') { %>
+		<h2>회원가입</h2>
+		<form action="/auth/register_process" method = "post">
+	<% } else if (cls === 'MNG' && url === 'create') { %>
+		<h2>관리자 기능 : 회원생성</h2>
+		<form action="/person/create_process" method = "post">
+	<% } %>
+	<% if ((cls === 'NON' || cls === 'MNG') && url === 'create') { %>
+			<div class="mb-3">
+				<label class="form-label" for="id">ID</label> 
+				<input class="form-control" type="text" name="loginid" placeholder="아이디를 입력해 주세요" style = "width:300px;" />
+			</div>
+			<div class="mb-3">
+				<label class="form-label" for="id">PW</label> 
+				<input class="form-control" type="text" name="password" placeholder="패스워드를 입력해 주세요" style = "width:300px;" />
+			</div>
+			<div class="mb-3" >
+				<label class="form-label" for="id">이름</label> 
+				<input class="form-control" type="text" name="name" placeholder="이름을 입력해 주세요" value="" style = "width:300px;" />
+			</div>
+			<div>
+				<label class="form-label" for="id">성별</label>
+				<input type="radio" name="mf" value="m" checked /> &nbsp;남자&nbsp;&nbsp;&nbsp;
+				<input type="radio" name="mf" value="f" /> &nbsp;여자
+			</div>
+			<div class="mb-3">
+				<label class="form-label" for="id">주소</label> 
+				<input class="form-control" type="text" name="address" placeholder="주소를 입력해 주세요" value="" style = "width:300px;" />
+			</div>
+			<div class="mb-3">
+				<label class="form-label" for="id">전화번호</label> 
+				<input class="form-control" type="text" name="tel" placeholder="000-0000-0000" value="" style = "width:300px;" />
+			</div>
+			<div class="mb-3">
+				<label class="form-label" for="id">생일</label> 
+				<input class="form-control" type="text" name="birth" placeholder="YYYYMMDD" value="" style = "width:300px;" />
+			</div>
+			<% if (cls === 'MNG') { %>
+				<div class="mb-3">
+					<label class="form-label" for="id">CLASS</label> 
+					<select name="class" id="id">
+						<option value="CEO">경영자</option>
+						<option value="MNG">관리자</option>
+						<option value="CST">고객</option>
+					</select>
+				</div>
+			<% } %>
+			<button class="btn btn-outline-primary btn-sm" type="submit">입력</button>
+			<% if (cls === 'MNG') { %>
+				<a href="/person/view"><button class="btn btn-outline-primary btn-sm" type="button">고객 목록 돌아가기</button></a>
+			<% } %>
+		</form>
+	<% } else if (url === 'update') { %> <!--value값 설정하고 성별 관련 설정하기-->
+		<h2>관리자 기능 : 회원 정보 수정</h2>
+		<form action="/person/update_process" method = "post">
+			<div class="mb-3" hidden>
+				<label class="form-label" for="id">ID</label> 
+				<input class="form-control" type="text" name="loginid" placeholder="ID" value="<%=person[0].loginid %>"style = "width:300px;" />
+			</div>
+			<div class="mb-3">
+				<label class="form-label" for="id">PW</label> 
+				<input class="form-control" type="text" name="password" placeholder="PW" value="<%=person[0].password%>" style = "width:300px;" />
+			</div>
+			<div class="mb-3" >
+				<label class="form-label" for="id">이름</label> 
+				<input class="form-control" type="text" name="name" placeholder="이름" value="<%=person[0].name%>" style = "width:300px;" />
+			</div>
+			<div>
+				<label class="form-label" for="id">성별</label>&nbsp;&nbsp;&nbsp;
+				<% let m,f = '';
+					if (person[0].mf === 'm') 
+						m = 'checked';
+					else 
+						f = 'checked'; %>
+				<input type="radio" name="mf" value="m" <%=m%> /> &nbsp;남자&nbsp;&nbsp;&nbsp;
+				<input type="radio" name="mf" value="f" <%=f%> /> &nbsp;여자
+			</div>
+			<div class="mb-3">
+				<label class="form-label" for="id">주소</label> 
+				<input class="form-control" type="text" name="address" placeholder="주소" value="<%=person[0].address%>" style = "width:300px;" />
+			</div>
+			<div class="mb-3">
+				<label class="form-label" for="id">전화번호</label> 
+				<input class="form-control" type="text" name="tel" placeholder="전화번호" value="<%=person[0].tel%>" style = "width:300px;" />
+			</div>
+			<div class="mb-3">
+				<label class="form-label" for="id">생일</label> 
+				<input class="form-control" type="text" name="birth" placeholder="생년월일" value="<%=person[0].birth%>" style = "width:300px;" />
+			</div>
+			<% if (cls === 'MNG') { %>
+				<div class="mb-3">
+					<label class="form-label" for="id">CLASS</label> 
+					<select name="class" id="id">
+						<% if (person[0].class === 'CEO') { %>
+							<option value="CEO" selected>경영자</option>
+							<option value="MNG">관리자</option>
+							<option value="CST">고객</option>
+						<% } else if (person[0].class === 'MNG') { %>
+							<option value="CEO">경영자</option>
+							<option value="MNG" selected>관리자</option>
+							<option value="CST">고객</option>
+						<% } else if (person[0].class === 'CST') { %>
+							<option value="CEO">경영자</option>
+							<option value="MNG">관리자</option>
+							<option value="CST" selected>고객</option>
+						<% } else { %>
+							<option value ="NON" selected>미등록</option>
+							<option value="CEO">경영자</option>
+							<option value="MNG">관리자</option>
+							<option value="CST">고객</option>
+						<% } %>
+					</select>
+				</div>
+			<% } %>
+			<button class="btn btn-outline-primary btn-sm" type="submit">입력</button>
+			<% if (cls === 'MNG') { %>
+				<a href="/person/view"><button class="btn btn-outline-primary btn-sm" type="button">고객 목록 돌아가기</button></a>
+			<% } %>
+		</form>
+	<% } %>
+</div>
+	

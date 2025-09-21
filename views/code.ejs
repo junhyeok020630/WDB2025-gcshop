@@ -1,0 +1,21 @@
+<!--202136049 최준혁-->
+<table class="table table-bordered border-primary table-hover" style="text-align: center;">
+    <thead class="table-primary "><th>대분류</th><th>대분류명</th><th>소분류</th><th>소분류명</th><th>시작일</th><th>종료일</th><th colspan="2">메뉴</th>
+    </thead> 
+    <% for (var i = 0; i < code.length; i++) { %>
+    <tr>
+        <td><%- code[i].main_id %></td>
+        <td><%- code[i].sub_id %></td>
+        <td><%- code[i].main_name %></td>
+        <td><%- code[i].sub_name %></td>
+        <td><%- code[i].start %></td>
+        <td><%- code[i].end %></td>
+        <td><a href="/code/update/<%- code[i].main_id %>/<%- code[i].sub_id %>/<%- code[i].start %>/<%- code[i].end %>" style="text-decoration: none;">수정</a></td>
+        <td><a href="/code/delete/<%- code[i].main_id %>/<%- code[i].sub_id %>/<%- code[i].start %>/<%- code[i].end %>" style="text-decoration: none;" onclick="if(confirm('정말로 삭제하시겠습니까?')==false) return false">삭제</a></td>
+    </tr>
+    <% } %>
+</table>
+<% if (code.length == 0) { %>
+    <p>자료가 없으니 코드 추가 버튼으로 코드를 추가해 주십시오. </p>
+<% } %>
+<a href="/code/create"><button class="btn btn-outline-secondary btn-sm" type="submit">코드 추가</button></a>
