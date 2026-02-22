@@ -1,64 +1,96 @@
-# GCShop - WDB2025
+# 🛒 GC-Shop WDB2025
 
-### 프로젝트 소개
+> **"Node.js와 MySQL을 활용한 강력한 통합 쇼핑몰 및 관리 시스템"**
+> 사용자 쇼핑 환경부터 관리자용 데이터 분석 기능까지 아우르는 풀스택 웹 애플리케이션입니다.
 
-GCShop은 Node.js, Express.js 및 MySQL을 사용하여 구축된 온라인 쇼핑몰 웹 애플리케이션입니다. 사용자, 상품, 게시판, 장바구니, 구매 관리 및 관리자 분석 페이지 등 다양한 기능을 제공합니다.
+<div align=center>
+  <img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white"/>
+  <img src="https://img.shields.io/badge/Express-000000?style=for-the-badge&logo=express&logoColor=white"/>
+  <img src="https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white"/>
+  <img src="https://img.shields.io/badge/EJS-A91E50?style=for-the-badge&logo=ejs&logoColor=white"/>
+  <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black"/>
+</div>
 
-### 주요 기능
+---
 
-- **회원 관리**: 회원가입, 로그인, 로그아웃 기능 및 고객, 관리자, 경영자 등 사용자 등급에 따른 권한 관리.
-- **상품 관리**: 관리자는 상품을 등록, 수정, 삭제할 수 있습니다. 고객은 상품을 조회하고 상세 정보를 확인할 수 있습니다.
-- **장바구니 및 구매**: 고객은 상품을 장바구니에 담거나 바로 구매할 수 있으며, 구매 내역을 확인하고 구매를 취소할 수 있습니다.
-- **게시판**: 일반 게시글 및 관리자 답변 기능이 있는 게시판 기능.
-- **관리자 기능**:
-  - **DB 관리**: 테이블, 코드, 게시판 유형, 회원 정보 등을 생성, 조회, 수정, 삭제하는 기능을 제공합니다.
-  - **고객 분석**: 지역별 고객 분포를 파이 차트로 보여주는 경영자용 분석 페이지.
+## 📖 소개
 
-### 기술 스택
+**가촌숍(GC-Shop)**은 효율적인 상품 관리와 사용자 친화적인 구매 여정을 제공하기 위해 설계된 쇼핑몰 플랫폼입니다. Express 프레임워크를 기반으로 한 리버스 프록시 구조와 세밀한 데이터베이스 설계를 통해 안정적인 서비스 환경을 구축하였습니다.
 
-- **백엔드**: Node.js, Express.js
-- **데이터베이스**: MySQL
-- **템플릿 엔진**: EJS
-- **프론트엔드**: HTML, CSS, JavaScript (Bootstrap, jQuery)
-- **기타 모듈**: `express-session`, `express-mysql-session`, `body-parser`, `multer`, `sanitize-html`.
+- 🛍️ **E-Commerce 핵심 구현**: 상품 검색, 장바구니, 결제 및 구매 이력 관리 시스템 완비
+- 🛠️ **관리자 대시보드**: 상품 등록/수정뿐만 아니라 고객 분석(Analytics) 기능을 통해 매출 데이터 시각화 지원
+- 💬 **커뮤니티 강화**: 게시판 시스템(Q&A, 공지사항 등)을 통합하여 고객 소통 창구 마련
+- 🔐 **보안 인증**: 세션 기반의 안전한 로그인 및 권한 관리 시스템 적용
 
-### 설치 및 실행 방법
+---
 
-1.  **프로젝트 클론**:
+## ✨ 주요 기능
 
-    ```bash
-    git clone junhyeok020630/wdb2025-gcshop.git
-    cd wdb2025-gcshop
-    ```
+| 기능 | 상세 설명 |
+|:---:|---|
+| 🔐 **회원 및 권한 관리** | 회원가입, 로그인 및 사용자별 권한(관리자/일반)에 따른 메뉴 차별화 |
+| 📦 **상품 관리 시스템** | CRUD 기반의 상품 등록, 카테고리별 분류 및 상세 정보 렌더링 |
+| 🛒 **주문/결제 프로세스** | 장바구니 담기, 수량 조절 및 데이터베이스 연동을 통한 실시간 구매 처리 |
+| 📋 **통합 게시판** | 답변형 게시판 구조 지원으로 원활한 고객 지원 및 정보 공유 가능 |
+| 📊 **고객 및 매출 분석** | `customerAnal` 기능을 통한 구매 패턴 분석 및 테이블 기반 데이터 시각화 |
 
-2.  **Node.js 모듈 설치**:
+---
 
-    ```bash
-    npm install express
-    npm install body-parser
-    npm install express-session
-    npm install express-mysql-session
-    npm install multer
-    npm install sanitize-html
-    npm install ejs
-    npm install mysql
-    ```
+## 🚀 실행 가이드
 
-3.  **MySQL 데이터베이스 설정**:
+이 프로젝트는 Node.js와 MySQL(MariaDB) 환경에서 작동합니다.
 
-    - MySQL 서버를 실행합니다.
-    - `db.js` 파일에 명시된 대로 `webdb2025`라는 이름의 데이터베이스를 생성하고, 필요한 테이블을 만듭니다.
-    - `db.js` 파일에서 데이터베이스 사용자 이름과 비밀번호를 환경에 맞게 수정합니다.
+### 1️⃣ 데이터베이스 설정
+* `lib/db.js` 파일에서 본인의 MySQL 접속 정보(Host, User, Password)를 설정합니다.
+* 제공된 초기 SQL 스크립트가 있다면 데이터베이스에 적용하여 테이블을 생성합니다.
 
-4.  **애플리케이션 실행**:
+### 2️⃣ 의존성 설치 및 실행
+터미널에서 아래 명령어를 순서대로 입력합니다.
+```bash
+# 패키지 설치
+npm install
 
-    ```bash
-    node main.js
-    ```
+# 서버 실행
+node main.js
+```
 
-5.  **접속**:
-    웹 브라우저에서 `http://localhost:3000`에 접속하여 애플리케이션을 사용할 수 있습니다.
+### 3️⃣ 서비스 접속
+* 브라우저에서 `http://localhost:3000` (또는 설정된 포트)으로 접속합니다.
 
-### 제작자
+---
 
-- 최준혁 (202136049).
+## 📁 프로젝트 구조
+
+```bash
+wdb2025-gcshop/
+├── 📂 lib/                  # 비즈니스 로직 및 DB 모듈
+│   ├── 📄 db.js             # MySQL 커넥션 설정
+│   ├── 📄 auth.js           # 인증 및 권한 로직
+│   └── 📄 product.js        # 상품 처리 엔진
+├── 📂 router/               # Express 라우터 (기능별 분리)
+│   ├── 📄 productRouter.js  # 상품 관련 경로 제어
+│   ├── 📄 purchaseRouter.js # 구매 및 장바구니 제어
+│   └── 📄 boardRouter.js    # 게시판 기능 제어
+├── 📂 views/                # EJS 템플릿 (UI 레이아웃)
+│   ├── 📄 mainFrame.ejs     # 메인 인터페이스 구조
+│   └── 📄 customerAnal.ejs  # 분석 대시보드 화면
+├── 📂 public/               # 정적 리소스 (CSS, 이미지)
+└── 📄 main.js               # Express 서버 엔트리 포인트
+```
+
+---
+
+## 🛠️ 기술 스택 (Tech Stack)
+
+### **Backend & Engine**
+![Node.js](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
+![Express](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB)
+![MySQL](https://img.shields.io/badge/mysql-%2300f.svg?style=for-the-badge&logo=mysql&logoColor=white)
+
+### **Frontend & Template**
+![EJS](https://img.shields.io/badge/EJS-A91E50?style=for-the-badge&logo=ejs&logoColor=white)
+![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
+![JavaScript](https://img.shields.io/badge/javascript-%23F7DF1E.svg?style=for-the-badge&logo=javascript&logoColor=black)
+
+---
